@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "truetool",
+  "version": "1.0.0",
+  "name": "True Tool",
+  "description": "The mod makes you carve all blocks with the correct tool for the block.",
+  "authors": ["shilolo"],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/truetool/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "com.shilo.truetool.client.TrueToolDataGenerator"
+    ],
+    "client": [
+      "com.shilo.truetool.client.TrueToolClient"
+    ],
+    "main": [
+      "com.shilo.truetool.TrueTool"
+    ]
+  },
+  "mixins": [
+    "truetool.mixins.json",
+    {
+      "config": "truetool.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "1.21.4"
+  }
+}
