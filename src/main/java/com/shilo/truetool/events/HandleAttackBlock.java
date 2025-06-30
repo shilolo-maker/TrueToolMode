@@ -13,7 +13,7 @@ public class HandleAttackBlock {
 
     public static void register() {
         AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
-            if (!world.isClient) return ActionResult.PASS;
+            if (!world.isClient || player.isSpectator() || player.isCreative()) return ActionResult.PASS;
 
             BlockState state = world.getBlockState(pos);
 
@@ -31,12 +31,13 @@ public class HandleAttackBlock {
                         ItemStack Stack = player.getInventory().getStack(j);
                         float speedBreaking2 = Stack.getMiningSpeedMultiplier(state);
 
-                        if (speedBreaking2 > speedBreaking) player.getInventory().selectedSlot = j;
+                        if (speedBreaking2 > speedBreaking){
+                            player.getInventory().selectedSlot = j;
+                            speedBreaking = speedBreaking2;
+                        }
 
                         j++;
                     }
-
-
 
                     return ActionResult.PASS;
                 }
@@ -45,7 +46,6 @@ public class HandleAttackBlock {
 
                 return ActionResult.PASS;
             }
-
 
             return null;
         });
