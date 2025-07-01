@@ -2,18 +2,18 @@ package com.shilo.truetool.events;
 
 
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 
-import javax.tools.Tool;
+public class HandlerAttackBlock {
 
-public class HandleAttackBlock {
+    private static boolean isRegister = true;
 
     public static void register() {
+
         AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
-            if (!world.isClient || player.isSpectator() || player.isCreative()) return ActionResult.PASS;
+            if (!world.isClient || player.isSpectator() || player.isCreative() || !isRegister) return ActionResult.PASS;
 
             BlockState state = world.getBlockState(pos);
 
@@ -49,6 +49,13 @@ public class HandleAttackBlock {
 
             return null;
         });
+    }
+    public static void unRegister() {
+        isRegister = false;
+    }
+
+    public static void Register () {
+        isRegister = true;
     }
 }
 

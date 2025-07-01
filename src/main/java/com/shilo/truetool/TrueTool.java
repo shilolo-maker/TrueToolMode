@@ -1,6 +1,6 @@
 package com.shilo.truetool;
 
-import com.shilo.truetool.events.HandleAttackBlock;
+import com.shilo.truetool.events.HandlerAttackBlock;
 import com.sun.jdi.event.ModificationWatchpointEvent;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.Event;
@@ -20,7 +20,7 @@ public class TrueTool implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        HandleAttackBlock.register();
+
 
     }
 }
